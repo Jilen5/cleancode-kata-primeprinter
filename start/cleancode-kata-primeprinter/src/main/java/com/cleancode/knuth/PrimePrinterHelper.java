@@ -44,6 +44,10 @@ public class PrimePrinterHelper {
             primes[primeIndex] = candidate;
         }
 
+        printPrimes(numberOfPrimes,primes);
+    }
+
+    private void printPrimes(int numberOfPrimes,int[] primes) {
         while (pageoffset <= numberOfPrimes) {
             System.out.print("The First ");
             System.out.print(Integer.toString(numberOfPrimes));
