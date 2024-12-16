@@ -1,8 +1,9 @@
 package com.cleancode.knuth;
 
+import static com.cleancode.knuth.PrimePrinter.numberOfPrimes;
+
 public class PrimePrinterHelper {
 
-    private final int numberOfPrimes = 1000;
     private final int[] primes = new int[numberOfPrimes + 1];
     private final int linesPerPage = 50;
     private final int columns = 4;
@@ -19,7 +20,7 @@ public class PrimePrinterHelper {
     private int square = 9;
     private int n = 0;
 
-    public void print() {
+    public int[] print() {
         primes[1] = 2;
 
         while (primeIndex < numberOfPrimes) {
@@ -43,21 +44,22 @@ public class PrimePrinterHelper {
             primeIndex++;
             primes[primeIndex] = candidate;
         }
+        PrintNumbers(numberOfPrimes, primes);
+        return primes;
 
-        printPrimes(numberOfPrimes,primes);
     }
 
-    private void printPrimes(int numberOfPrimes,int[] primes) {
-        while (pageoffset <= numberOfPrimes) {
+    private void PrintNumbers(int numberOfNumbers, int[] numbers) {
+        while (pageoffset <= numberOfNumbers) {
             System.out.print("The First ");
-            System.out.print(Integer.toString(numberOfPrimes));
+            System.out.print(Integer.toString(numberOfNumbers));
             System.out.print(" Prime Numbers === Page ");
             System.out.print(Integer.toString(pagenumber));
             System.out.println("\n");
             for (rowoffset = pageoffset; rowoffset <= pageoffset + linesPerPage - 1; rowoffset++) {
                 for (column = 0; column <= columns - 1; column++)
-                    if (rowoffset + column * linesPerPage <= numberOfPrimes)
-                        System.out.printf("%10d", primes[rowoffset + column * linesPerPage]);
+                    if (rowoffset + column * linesPerPage <= numberOfNumbers)
+                        System.out.printf("%10d", numbers[rowoffset + column * linesPerPage]);
                 System.out.println();
             }
             System.out.println("\f");
